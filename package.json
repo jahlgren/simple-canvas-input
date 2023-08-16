@@ -1,0 +1,33 @@
+{
+  "name": "@jahlgren/simple-canvas-input",
+  "version": "0.1.0",
+  "description": "Simple input system for HTML-canvas animations and games.",
+  "keywords": [
+    "input",
+    "canvas",
+    "html canvas",
+    "games",
+    "animations"
+  ],
+  "author": "Jimi Ahlgren",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist && tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jahlgren/simple-canvas-input.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jahlgren/simple-canvas-input/issues"
+  },
+  "homepage": "https://github.com/jahlgren/simple-canvas-input#readme",
+  "devDependencies": {
+    "rimraf": "^5.0.1",
+    "typescript": "^5.1.6"
+  }
+}
