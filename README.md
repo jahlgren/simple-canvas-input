@@ -21,7 +21,7 @@ canvas.height = 600;
 const context = canvas.getContext('2d');
 document.body.append(canvas);
 
-// First initialize the input system:
+// Initialize the input system, outside the game loop:
 const input = new Input(canvas);
 
 // Game loop
@@ -29,7 +29,7 @@ requestAnimationFrame(gameLoop);
 function gameLoop(elapsed) {
   requestAnimationFrame(gameLoop);
 
-  // Always make sure to update the input before using it:
+  // Always make sure to update the input before using it, inside the game loop:
   input.update();
 
   // Now we can use the public methods in the input system to check for keyboard and mouse events:
