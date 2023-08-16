@@ -33,7 +33,7 @@ function gameLoop(elapsed) {
   input.update();
 
   // Now we can use the public methods in the input system to check for keyboard and mouse events:
-  if(input.getMouseButton(MouseButton.Left)) {
+  if(input.getMouseButton(MouseButtons.Left)) {
     context.fillRect(input.mousePosition.x - 4, input.mousePosition.y - 4, 8, 8);
   }
 }
@@ -52,3 +52,5 @@ For `key` and `mouseButton` arguments you can use the enums `Keys` and `MouseBut
 | getMouseButton | (mouseButton: string) => boolean | Returns true if the given mouse button is held down |
 | getMouseButtonDown | (mouseButton: string) => boolean | Returns true if the given mouse button was pressed this frame |
 | getMouseButtonUp | (mouseButton: string) => boolean  | Returns true if the given mouse button was released this frame |
+| setCanvasScale | (scale: number) => boolean | Sets the scale of the canvas to be used for mouse coordinates |
+| getCanvasScale | (key: string) => boolean | Gets the value of the given canvas scale |

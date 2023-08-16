@@ -1,18 +1,19 @@
 export default class Input {
   public readonly mousePosition: {x: number, y: number} = {x: 0, y: 0};
-
+  
   private _state: Set<string>;
   private _previousState: Set<string>;
   private _toAdd: Set<string>;
   private _toRemove: Set<string>;
-  private _mouseParent: HTMLElement;
+  private _canvas: HTMLCanvasElement;
+  private _canvasScale: number = 1;
 
-  public constructor(mouseParent: HTMLElement) {
+  public constructor(canvas: HTMLCanvasElement) {
     this._state = new Set();
     this._previousState = new Set();
     this._toAdd = new Set();
     this._toRemove = new Set();
-    this._mouseParent = mouseParent;
+    this._canvas = canvas;
 
     // Binding `this` to event functions to prevent multithreading issues.
     this._onKeyDown = this._onKeyDown.bind(this);
@@ -26,6 +27,24 @@ export default class Input {
     window.addEventListener('mousedown', this._onMouseDown);
     window.addEventListener('mouseup', this._onMouseUp);
     window.addEventListener('mousemove', this._onMouseMove);
+  }
+
+  /**
+   * Sets the scale of the canvas to be used for mouse coordinates.
+   */
+  public setCanvasScale(scale: number) {
+    this.mousePosition.x *= this._canvasScale;
+    this.mousePosition.y *= this._canvasScale;
+    this._canvasScale = scale;
+    this.mousePosition.x /= this._canvasScale;
+    this.mousePosition.y /= this._canvasScale;
+  }
+
+  /**
+   * Gets the value of the given canvas scale.
+   */
+  public getCanvasScale() {
+    return this._canvasScale;
   }
 
   /**
@@ -96,9 +115,9 @@ export default class Input {
   }
 
   private _onMouseMove(e: MouseEvent) {
-    const rect = this._mouseParent.getBoundingClientRect();
-    this.mousePosition.x = e.clientX - rect.left;
-    this.mousePosition.y = e.clientY - rect.top;
+    const rect = this._canvas.getBoundingClientRect();
+    this.mousePosition.x = (e.clientX - rect.left) / this._canvasScale;
+    this.mousePosition.y = (e.clientY - rect.top) / this._canvasScale;
   }
 
   private _getMouseButtonName(buttonIndex: number) {
