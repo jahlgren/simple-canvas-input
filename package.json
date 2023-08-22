@@ -1,6 +1,6 @@
 {
   "name": "@jahlgren/simple-canvas-input",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Simple input system for HTML-canvas animations and games.",
   "keywords": [
     "input",
